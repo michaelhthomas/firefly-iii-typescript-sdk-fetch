@@ -30,7 +30,12 @@ export function PolymorphicPropertyFromJSONTyped(json: any, ignoreDiscriminator:
     if ((json === undefined) || (json === null)) {
         return json;
     }
-    return JSON.parse(json);
+
+    try {
+      return JSON.parse(json);
+    } catch {
+      return json;
+    }
 }
 
 export function PolymorphicPropertyToJSON(value?: PolymorphicProperty | null): any {
